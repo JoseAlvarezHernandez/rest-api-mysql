@@ -40,10 +40,43 @@ const sos = require('../controllers/sos');
  *       error: 
  *         $ref: '#/definitions/errorObject'
  */
-
+/**
+ * @swagger
+ * definitions:
+ *   PosteAPI:
+ *     type: object
+ *     discriminator: type
+ *     properties: 
+ *       idEvento:
+ *         type: integer
+ *       iTipoEvento:
+ *         type: integer
+ *       idItem:
+ *         type: integer  
+ *       iTipoItem:
+ *         type: integer  
+ *       cDescripcion:
+ *         type: string  
+ *       dFechaHora:
+ *         type: date  
+ *       idUsuario:
+ *         type: integer
+ *       iStatus:
+ *         type: integer
+ *       estado:
+ *         type: integer   
+ */
+/**
+ * @swagger
+ * definitions:
+ *   PosteResponse:
+ *     type: array
+ *     items:
+ *       $ref: '#/definitions/PosteAPI'
+ */
  /** 
  * @swagger
- * /api/sos/{posteId}/alerts:
+ * /api/sos/{posteId}/alerts/{initDate}/{endDate}:
  *   get:
  *     tags:
  *       - Alertas
@@ -56,11 +89,21 @@ const sos = require('../controllers/sos');
  *         in: path
  *         required: true
  *         type: string
+ *       - name: initDate
+ *         description: Initial date for search
+ *         in: path
+ *         required: true
+ *         type: string
+ *       - name: endDate
+ *         description: End date for search
+ *         in: path
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
  *         description: Sucessful request
  *         schema:
- *           $ref: '#/definitions/BooleanResult'
+ *           $ref: '#/definitions/PosteResponse'
  *       401:
  *         description: Unauthorized access 
  *         schema:
@@ -70,6 +113,6 @@ const sos = require('../controllers/sos');
  *         schema:
  *           $ref: '#/definitions/error'
  */
-router.get('/api/sos/:posteId/alerts', sos.alerts);
+router.get('/api/sos/:posteId/alerts/:initDate/:endDate', sos.alerts);
 
 module.exports = router;
