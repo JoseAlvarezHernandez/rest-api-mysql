@@ -1,0 +1,34 @@
+{
+  "name": "api-mysql",
+  "version": "1.0.0",
+  "description": "RESTFUL API (EXPRESS AND MYSQL)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseAlvarezHernandez/rest-api-mysql.git"
+  },
+  "keywords": [
+    "RESTFUL",
+    "API",
+    "MySQL",
+    "EXPRESS"
+  ],
+  "author": "Jose de Jesus Alvarez Hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseAlvarezHernandez/rest-api-mysql/issues"
+  },
+  "homepage": "https://github.com/JoseAlvarezHernandez/rest-api-mysql#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "path": "^0.12.7",
+    "swagger-jsdoc": "^1.9.7",
+    "url": "^0.11.0"
+  }
+}
