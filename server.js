@@ -105,9 +105,7 @@ const sosRoute = require('./routes/sos');
  ************************************************/
 
 // Init get
-router.get('/', (req, res) => {
-    res.send({ status: 'up' });
-});
+router.get('/', (req, res) => res.status(200).send({ status: 'up' }));
 
 // serve swagger
 router.get('/api/swagger.json', (req, res) => {
@@ -118,6 +116,4 @@ router.get('/api/swagger.json', (req, res) => {
 app.use(router);
 app.use(sosRoute);
 
-app.listen(port, () => {
-    console.log('Server up');
-});
+app.listen(port, () => console.log('Server up'));
