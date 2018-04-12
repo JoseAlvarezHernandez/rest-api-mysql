@@ -10,11 +10,12 @@ const auth = {
     database: 'MYSQL'
 };
 
-exports.getAlarms = (posteId) =>
+exports.getAlarms = (posteId, initDate, endDate) =>
     new Promise((resolve, reject) => {
         try {
             const connection = mysql.createConnection(auth);
-            connection.query(`SELECT * from columns_priv`, (err, rows, fields) => err ? reject(err) :  resolve(rows));
+            const query = `SELECT * from columns_priv where Timestamp >= '${initDate}' and Timestamp <= '${endDate}' order by Timestamp DESC`;
+            connection.query(query, (err, rows, fields) => err ? reject(err) : resolve(rows));
         } catch (err) {
             reject(err);
         }
