@@ -4,25 +4,17 @@
  * @desc SOS Model  
  */
 const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'dbuser',
-    password: 's3kreee7'
-});
+const auth = {
+    host: '127.0.0.1',
+    user: 'root',
+    database: 'MYSQL'
+};
 
 exports.getAlarms = (posteId) =>
     new Promise((resolve, reject) => {
         try {
-            connection.connect();
-
-            connection.query(`SELECT ${posteId} AS solution`, function (err, rows, fields) {
-                if (err)
-                    reject(err);
-                else
-                    resolve(rows);
-            });
-
-            connection.end();
+            const connection = mysql.createConnection(auth);
+            connection.query(`SELECT * from columns_priv`, (err, rows, fields) => err ? reject(err) :  resolve(rows));
         } catch (err) {
             reject(err);
         }
