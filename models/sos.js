@@ -1,13 +1,13 @@
 /** 
- * @module models/sos 
+ * @module models 
  * @author Jose de Jesus Alvarez Hernandez
- * @desc SOS Model  
+ * @desc Model  
  */
 const mysql = require('mysql');
 const auth = {
     host: '127.0.0.1',
     user: 'root',
-    database: 'sosdesa'
+    database: 'test'
 };
 
 exports.getAlarms = (posteId, initDate, endDate) =>
@@ -15,14 +15,14 @@ exports.getAlarms = (posteId, initDate, endDate) =>
         try {
             const connection = mysql.createConnection(auth);
             const query = ` SELECT 
-                                idEvento, iTipoEvento, idItem, iTipoItem, cDescripcion, idUsuario, iStatus, estado
+                               id, name, description, 
                             from 
-                                eventos 
+                                log
                             where 
-                                dFechaHora >= '${initDate}' 
-                                and dFechaHora <= '${endDate}' 
+                                initDate >= '${initDate}' 
+                                and endDate <= '${endDate}' 
                             order by 
-                                dFechaHora DESC`;
+                                initDate DESC`;
             connection.query(query, (err, rows, fields) => err ? reject(err) : resolve(rows));
         } catch (err) {
             reject(err);
